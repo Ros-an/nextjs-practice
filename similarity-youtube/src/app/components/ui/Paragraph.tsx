@@ -1,5 +1,6 @@
-import React, { HTMLAttributes } from "react";
+import React, { forwardRef, HTMLAttributes } from "react";
 import { cva, VariantProps } from "class-variance-authority";
+import { cn } from "@/app/lib/utils";
 
 // after adding this HTMLAttributes<HTMLParagraphElement>, go to where ever <Paragraph /> component is used -> ctrl + space, u'll see the options
 interface ParagraphProps
@@ -20,6 +21,20 @@ const paragraphVariants = cva(
     },
   }
 );
-export default function Paragraph({}: ParagraphProps) {
-  return <div>Paragraph</div>;
-}
+const Paragraph = forwardRef<HTMLParagraphElement, ParagraphProps>(
+  ({ className, size, children, ...props }, ref) => {
+    return (
+      <p
+        ref={ref}
+        {...props}
+        className={cn(paragraphVariants({ size, className }))}
+      >
+        {children}
+      </p>
+    );
+  }
+);
+
+// 👇🏼 to disable eslint display name error
+Paragraph.displayName = "Paragraph";
+export default Paragraph;
