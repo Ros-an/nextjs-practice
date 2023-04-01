@@ -1,6 +1,6 @@
 import React, { forwardRef, HTMLAttributes } from "react";
 import { cva, VariantProps } from "class-variance-authority";
-import { cn } from "@/app/lib/utils";
+import { cn } from "@/lib/utils";
 
 // after adding this HTMLAttributes<HTMLParagraphElement>, go to where ever <Paragraph /> component is used -> ctrl + space, u'll see the options
 interface ParagraphProps
